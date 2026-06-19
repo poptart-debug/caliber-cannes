@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <title>Caliber — Cannes 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { background: #e6e5e2; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    .topbar { background: #0d0d0d; padding: 0 18px; height: 58px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+    .topbar img { height: 36px; width: auto; }
+    .topbar-event { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+
+    .hero { padding: 28px 18px 22px; text-align: center; }
+    .hero-headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 38px; line-height: .95; letter-spacing: .01em; text-transform: uppercase; color: #0d0d0d; }
+    .hero-sub { font-size: 13px; color: #666; margin-top: 10px; }
+
+    .form-wrap { margin: 0 14px; background: #fff; border: 1px solid #0d0d0d; }
+    .form-section-hd { border-bottom: 1px solid #0d0d0d; padding: 10px 14px; }
+    .form-section-hd span { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #999; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #0d0d0d; }
+    .field-row:last-child { border-bottom: none; }
+    .field { padding: 12px 14px 10px; border-bottom: 1px solid #0d0d0d; }
+    .field:last-child { border-bottom: none; }
+    .field-row .field { border-bottom: none; }
+    .field-row .field:first-child { border-right: 1px solid #0d0d0d; }
+
+    .field label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #999; margin-bottom: 4px; }
+    .field input { display: block; width: 100%; border: none; outline: none; background: transparent; font-family: 'Inter', sans-serif; font-size: 15px; color: #0d0d0d; padding: 0; height: 28px; -webkit-appearance: none; }
+    .field input::placeholder { color: #ccc; }
+    .field input:focus { border-bottom: 1.5px solid #0d0d0d; margin-bottom: -1.5px; }
+
+    .submit-wrap { margin: 14px 14px 0; }
+    .submit-btn { width: 100%; height: 52px; background: #0d0d0d; color: #e6e5e2; border: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; -webkit-tap-highlight-color: transparent; }
+    .submit-btn:active { opacity: .85; }
+    .submit-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+    .status { margin: 10px 14px 0; padding: 11px 14px; font-size: 13px; display: none; align-items: center; gap: 8px; border: 1px solid; }
+    .status.success { display: flex; background: #f0f5f0; color: #2a5c2a; border-color: #2a5c2a; }
+    .status.error { display: flex; background: #faf0f0; color: #a32d2d; border-color: #a32d2d; }
+
+    .leads-section { margin: 24px 14px 0; padding-bottom: 40px; }
+    .leads-hd { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+    .leads-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #888; }
+    .leads-count-badge { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; color: #888; background: #d8d7d4; padding: 2px 8px; }
+
+    .lead-row { background: #fff; border: 1px solid #0d0d0d; padding: 11px 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; }
+    .lead-initials { width: 32px; height: 32px; background: #0d0d0d; color: #e6e5e2; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 12px; flex-shrink: 0; }
+    .lead-name { font-size: 14px; font-weight: 500; color: #0d0d0d; }
+    .lead-meta { font-size: 12px; color: #888; margin-top: 1px; }
+
+    .sheet-link { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 16px 14px 0; padding: 12px; border: 1px solid #0d0d0d; background: transparent; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #0d0d0d; }
+
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(230,229,226,.3); border-top-color: #e6e5e2; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <img src="data:image/png;base64,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" alt="Caliber" />
+    <span class="topbar-event">Cannes&nbsp;'26</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-headline">Let's keep<br>in touch.</div>
+    <div class="hero-sub">All fields optional — save what you have.</div>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-section-hd"><span>Contact details</span></div>
+    <div class="field-row">
+      <div class="field"><label>Name</label><input type="text" id="f-name" placeholder="Full name" autocomplete="name" /></div>
+      <div class="field"><label>Company</label><input type="text" id="f-company" placeholder="Org" autocomplete="organization" /></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Location</label><input type="text" id="f-location" placeholder="City" /></div>
+      <div class="field"><label>Owner</label><input type="text" id="f-owner" placeholder="Your name" /></div>
+    </div>
+    <div class="field"><label>LinkedIn</label><input type="url" id="f-linkedin" placeholder="linkedin.com/in/…" /></div>
+    <div class="field-row">
+      <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="name@co.com" autocomplete="email" /></div>
+      <div class="field"><label>Phone</label><input type="tel" id="f-phone" placeholder="+1 234…" autocomplete="tel" /></div>
+    </div>
+    <div class="field">
+      <label>Notes</label>
+      <textarea id="f-notes" placeholder="Context, next steps…" rows="3" style="display:block;width:100%;border:none;outline:none;background:transparent;font-family:'Inter',sans-serif;font-size:15px;color:#0d0d0d;padding:0;resize:none;line-height:1.5;"></textarea>
+    </div>
+  </div>
+
+  <div class="submit-wrap">
+    <button class="submit-btn" id="submit-btn" onclick="submitLead()">
+      <span id="btn-label">Save</span>
+      <div id="btn-spinner" class="spinner" style="display:none;"></div>
+    </button>
+  </div>
+
+  <div class="status" id="status-msg"></div>
+
+  <div class="leads-section">
+    <div class="leads-hd">
+      <span class="leads-label">Session leads</span>
+      <span class="leads-count-badge" id="leads-count">0</span>
+    </div>
+    <div id="leads-list"></div>
+    <a href="https://docs.google.com/spreadsheets/d/13jqDhpFoEKmRKknB8ZWFH27OfcRN60ae6-1VNlvu5nA/edit?gid=0#gid=0" target="_blank" class="sheet-link">
+      ↗ View Google Sheet
+    </a>
+  </div>
+
+  <script>
+    const WEBHOOK = 'https://script.google.com/macros/s/AKfycbyltLsgsZTVbzK8I6uNuSVQf0AuLioTMMlMBzC2vHv5Y4cJ87wSGLPzni5wpaiLXlswEg/exec';
+    const sessionLeads = [];
+
+    async function submitLead() {
+      const fields = {
+        name: document.getElementById('f-name').value.trim(),
+        company: document.getElementById('f-company').value.trim(),
+        location: document.getElementById('f-location').value.trim(),
+        owner: document.getElementById('f-owner').value.trim(),
+        linkedin: document.getElementById('f-linkedin').value.trim(),
+        email: document.getElementById('f-email').value.trim(),
+        phone: document.getElementById('f-phone').value.trim(),
+        notes: document.getElementById('f-notes').value.trim(),
+      };
+
+      if (!Object.values(fields).some(v => v)) {
+        showStatus('error', 'Fill in at least one field before saving.');
+        return;
+      }
+
+      setLoading(true);
+      clearStatus();
+
+      try {
+        const ts = new Date().toLocaleString('en-GB', {
+          timeZone: 'Europe/Paris',
+          day: '2-digit', month: 'short', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        });
+
+        const res = await fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ timestamp: ts, ...fields })
+        });
+
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || 'Script returned error');
+
+        sessionLeads.unshift({ ...fields, ts });
+        renderLeads();
+        clearForm();
+        showStatus('success', `Saved${fields.name ? ' — ' + fields.name : ''}`);
+
+      } catch (err) {
+        showStatus('error', 'Could not save. Check your internet connection and try again.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function setLoading(on) {
+      document.getElementById('submit-btn').disabled = on;
+      document.getElementById('btn-label').textContent = on ? 'Saving…' : 'Save';
+      document.getElementById('btn-spinner').style.display = on ? 'block' : 'none';
+    }
+
+    function showStatus(type, msg) {
+      const el = document.getElementById('status-msg');
+      el.className = 'status ' + type;
+      el.innerHTML = (type === 'success' ? '✓ ' : '⚠ ') + msg;
+    }
+
+    function clearStatus() { document.getElementById('status-msg').className = 'status'; }
+
+    function clearForm() {
+      ['f-name','f-company','f-location','f-owner','f-linkedin','f-email','f-phone','f-notes'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+    }
+
+    function initials(name) {
+      return name.trim().split(/\s+/).slice(0,2).map(w => w[0].toUpperCase()).join('') || '?';
+    }
+
+    function renderLeads() {
+      document.getElementById('leads-count').textContent = sessionLeads.length;
+      document.getElementById('leads-list').innerHTML = sessionLeads.map(l => `
+        <div class="lead-row">
+          <div class="lead-initials">${l.name ? initials(l.name) : '?'}</div>
+          <div>
+            <div class="lead-name">${l.name || '(unnamed)'}</div>
+            <div class="lead-meta">${[l.company, l.location].filter(Boolean).join(' · ') || l.email || '—'}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+
+</body>
+</html>
