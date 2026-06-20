@@ -25,49 +25,89 @@
     #splash.hidden { display: none; }
 
     .splash-top {
-      flex: 1; display: flex; flex-direction: column;
+      display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      width: 100%; padding: 40px 32px; gap: 20px;
+      flex: 1;
+      width: 100%; padding: 20px 32px; gap: 14px;
     }
-    #splash-logo { width: 200px; max-width: 70vw; height: auto; filter: invert(1); }
+    #splash-logo { width: 180px; max-width: 65vw; height: auto; filter: invert(1); }
     #splash-logo.invisible { visibility: hidden; }
+
+    .splash-year {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 36px; letter-spacing: .14em;
+      text-transform: uppercase; color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
 
     .splash-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 13px; letter-spacing: .2em;
-      text-transform: uppercase; color: #fff;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4);
+      font-weight: 700; font-size: 12px; letter-spacing: .22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
     }
 
-    .splash-bottom { width: 100%; padding: 36px 24px 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(2px); }
-    .splash-bottom label {
-      display: block; font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 11px; letter-spacing: .18em;
-      text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 8px;
+    /* Name field — top strip, matches app topbar exactly */
+    .splash-name-strip {
+      width: 100%; height: 58px;
+      background: #1A6FA8;
+      border-bottom: 3px solid #FFE033;
+      display: flex; align-items: center;
+      padding: 0 18px; gap: 10px;
+      flex-shrink: 0;
     }
-    .splash-bottom input {
-      display: block; width: 100%; background: transparent;
-      border: none; border-bottom: 1px solid rgba(255,255,255,0.25);
-      outline: none; font-family: 'Inter', sans-serif;
-      font-size: 18px; color: #fff; padding: 0 0 10px; -webkit-appearance: none;
+    .splash-name-strip label { display: none; }
+    .splash-name-display {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 13px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
     }
-    .splash-bottom input::placeholder { color: rgba(255,255,255,0.25); }
-    .splash-bottom input:focus { border-bottom-color: rgba(255,255,255,0.7); }
-    /* Invisible placeholder to hold space while name flies */
-    #splash-name-display { visibility: hidden; font-family: 'Inter', sans-serif; font-size: 18px; color: #fff; padding: 0 0 10px; min-height: 34px; }
+
+    /* Nav buttons — bottom section */
+    .splash-bottom {
+      width: 100%; padding: 20px 24px 36px;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(3px);
+      display: flex; flex-direction: column; gap: 10px;
+    }
 
     .splash-btn {
-      width: 100%; height: 52px; margin-top: 28px;
-      background: #e6e5e2; color: #1A6FA8; border: none;
+      width: 100%; height: 52px;
+      background: #FFE033; color: #1A6FA8; border: none;
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 16px; letter-spacing: .18em;
+      font-weight: 800; font-size: 15px; letter-spacing: .14em;
       text-transform: uppercase; cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+      display: flex; align-items: center; justify-content: center;
     }
     .splash-btn:active { opacity: .85; }
+    .splash-btn-secondary {
+      width: 100%; height: 48px;
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 14px; letter-spacing: .14em;
+      text-transform: uppercase; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+    }
+    .splash-btn-secondary:active { background: rgba(255,255,255,0.1); }
 
-    /* ── Flying elements (fixed overlays during transition) ── */
+    /* Name strip edit button */
+    .splash-name-edit-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.7);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 11px; letter-spacing: .14em;
+      text-transform: uppercase; cursor: pointer;
+      padding: 6px 12px; white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .splash-name-edit-btn:active { background: rgba(255,255,255,0.1); }
+
     .flying {
       position: fixed; z-index: 200; pointer-events: none; display: none;
     }
@@ -97,7 +137,7 @@
       position: sticky; top: 0; z-index: 10;
       border-bottom: 3px solid #FFE033;
     }
-    #topbar-logo { height: 36px; width: auto; filter: invert(1); }
+    #topbar-logo { height: 28px; width: auto; filter: invert(1); }
     #topbar-logo.invisible { visibility: hidden; }
 
     .topbar-right { display: flex; align-items: center; gap: 12px; }
@@ -187,6 +227,7 @@
   <!-- Flying elements -->
   <img id="flying-logo" class="flying" src="caliber-logo.png" alt="" aria-hidden="true" />
   <span id="flying-name" class="flying"></span>
+  <span id="flying-event" class="flying" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);">Cannes&nbsp;'26</span>
 
   <!-- Success overlay -->
   <div id="success-overlay">
@@ -198,24 +239,65 @@
 
   <!-- Splash -->
   <div id="splash">
-    <div class="splash-top">
-      <img id="splash-logo" src="caliber-logo.png" alt="Caliber" />
-      <span class="splash-title">Cannes Lead Capture</span>
+
+    <!-- ── ONBOARDING STATE (first visit) ── -->
+    <div id="splash-onboard">
+      <!-- Logo + title centred -->
+      <div class="splash-top">
+        <img id="splash-logo" src="caliber-logo.png" alt="Caliber" />
+        <div class="splash-year">Cannes 2026</div>
+      </div>
+
+      <!-- Name field + Let's Go -->
+      <div class="splash-bottom">
+        <div style="margin-bottom:6px;">
+          <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;">Caliber team member</label>
+          <input type="text" id="s-member" placeholder="Your name" autocomplete="name"
+                 style="display:block;width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.3);outline:none;font-family:'Inter',sans-serif;font-size:18px;color:#fff;padding:0 0 10px;-webkit-appearance:none;" />
+        </div>
+        <button class="splash-btn" id="splash-btn" onclick="startApp()">Let's Go</button>
+      </div>
     </div>
-    <div class="splash-bottom">
-      <label>Caliber team member</label>
-      <input type="text" id="s-member" placeholder="Your name" autocomplete="name" />
-      <button class="splash-btn" id="splash-btn" onclick="startApp()">Get started</button>
+
+    <!-- ── HUB STATE (returning visits) ── -->
+    <div id="splash-hub" style="display:none;width:100%;height:100%;display:none;flex-direction:column;">
+
+      <!-- Name strip at top — matches app topbar exactly -->
+      <div class="splash-name-strip">
+        <div id="name-display-row" style="display:flex;align-items:center;gap:10px;flex:1;">
+          <span class="splash-name-display" id="name-display-text"></span>
+          <button class="splash-name-edit-btn" id="name-edit-btn" onclick="enableNameEdit()">Edit</button>
+        </div>
+        <input type="text" id="s-member-hub" placeholder="Your name" autocomplete="name" style="display:none;flex:1;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.5);outline:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:0;-webkit-appearance:none;" />
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span id="hub-event" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);">Cannes&nbsp;'26</span>
+        </div>
+      </div>
+
+      <!-- Logo + title centred -->
+      <div class="splash-top">
+        <img id="splash-logo-hub" src="caliber-logo.png" alt="Caliber" style="width:180px;max-width:65vw;height:auto;filter:invert(1);" />
+        <div class="splash-year">Cannes 2026</div>
+      </div>
+
+      <!-- Nav buttons at bottom -->
+      <div class="splash-bottom">
+        <button class="splash-btn" onclick="goToLeadCapture()">Lead Capture Tool</button>
+        <a href="https://docs.google.com/spreadsheets/d/1NLhN18ve10nJrpyd4Axtdv4FDVQLrHXR/edit?usp=sharing&ouid=109735054744854209930&rtpof=true&sd=true" target="_blank" class="splash-btn-secondary">Master Schedule</a>
+        <a href="https://docs.google.com/document/d/1n8TnCbi4DLD-aaZCzjx2lgxmq6PwGGtdZc-ra7zfyxc/edit?usp=sharing" target="_blank" class="splash-btn-secondary">Source of Truth</a>
+      </div>
+
     </div>
+
   </div>
 
   <!-- Main app -->
   <div id="app" class="hidden">
     <div class="topbar">
-      <img id="topbar-logo" src="caliber-logo.png" alt="Caliber" onclick="resetMember()" style="cursor:pointer;" />
+      <span id="topbar-member" onclick="resetMember()"></span>
       <div class="topbar-right">
-        <span id="topbar-member" onclick="resetMember()"></span>
-        <span class="topbar-event">Cannes&nbsp;'26</span>
+        <span id="app-event" class="topbar-event">Cannes&nbsp;'26</span>
+        <img id="topbar-logo" src="caliber-logo.png" alt="Caliber" onclick="resetMember()" style="cursor:pointer;" />
       </div>
     </div>
 
@@ -260,7 +342,7 @@
       </div>
       <div id="leads-list"></div>
       <a href="https://docs.google.com/spreadsheets/d/13jqDhpFoEKmRKknB8ZWFH27OfcRN60ae6-1VNlvu5nA/edit?gid=0#gid=0" target="_blank" class="sheet-link">
-        ↗ View Google Sheet
+        ↗ View Lead Repository
       </a>
     </div>
   </div>
@@ -290,82 +372,152 @@
       }));
     }
 
-    function startApp() {
-      const val = document.getElementById('s-member').value.trim();
-      if (!val) { document.getElementById('s-member').focus(); return; }
+    function showSplashHub() {
+      const onboard = document.getElementById('splash-onboard');
+      const hub = document.getElementById('splash-hub');
+
+      // Fade out onboard
+      onboard.style.transition = 'opacity 0.35s ease';
+      onboard.style.opacity = '0';
+
+      setTimeout(() => {
+        onboard.style.display = 'none';
+        // Prepare hub hidden then fade in
+        hub.style.cssText = 'display:flex;flex-direction:column;width:100%;height:100%;opacity:0;transition:opacity 0.4s ease;';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          hub.style.opacity = '1';
+        }));
+      }, 350);
+    }
+
+    function showSplashOnboard() {
+      document.getElementById('splash-hub').style.display = 'none';
+      document.getElementById('splash-onboard').style.cssText = 'display:flex;flex-direction:column;height:100%;';
+    }
+
+    function enableNameEdit() {
+      const input = document.getElementById('s-member-hub');
+      const displayRow = document.getElementById('name-display-row');
+      input.value = teamMember;
+      input.style.display = 'block';
+      displayRow.style.display = 'none';
+      input.focus(); input.select();
+      input.onkeydown = e => { if (e.key === 'Enter') saveHubName(); };
+    }
+
+    function saveHubName() {
+      const input = document.getElementById('s-member-hub');
+      const val = input.value.trim();
+      if (!val) return;
       teamMember = val;
       localStorage.setItem('caliber_member', val);
       document.getElementById('topbar-member').textContent = val;
+      updateNameDisplay(val);
+    }
+
+    function updateNameDisplay(name) {
+      const displayRow = document.getElementById('name-display-row');
+      const displayText = document.getElementById('name-display-text');
+      const hubInput = document.getElementById('s-member-hub');
+      if (displayText) displayText.textContent = name || '';
+      if (hubInput) hubInput.style.display = 'none';
+      if (displayRow) displayRow.style.display = 'flex';
+    }
+
+    function goToLeadCapture() {
+      const hubInput = document.getElementById('s-member-hub');
+      if (hubInput && hubInput.style.display !== 'none') {
+        const val = hubInput.value.trim();
+        if (val) { teamMember = val; localStorage.setItem('caliber_member', val); }
+      }
+      document.getElementById('topbar-member').textContent = teamMember;
       animateToApp();
     }
 
+    function startApp() {
+      const input = document.getElementById('s-member');
+      const val = input.value.trim();
+      if (!val) { input.focus(); return; }
+      teamMember = val;
+      localStorage.setItem('caliber_member', val);
+      document.getElementById('topbar-member').textContent = val;
+      updateNameDisplay(val);
+      showSplashHub();
+    }
+
     function animateToApp() {
-      const splashLogo   = document.getElementById('splash-logo');
+      const hubVisible = document.getElementById('splash-hub').style.display !== 'none';
+      const splashLogo   = document.getElementById(hubVisible ? 'splash-logo-hub' : 'splash-logo');
       const topbarLogo   = document.getElementById('topbar-logo');
       const flyingLogo   = document.getElementById('flying-logo');
-      const splashInput  = document.getElementById('s-member');
+      const nameSourceEl = hubVisible
+        ? document.getElementById('name-display-text')
+        : document.getElementById('s-member');
       const topbarMember = document.getElementById('topbar-member');
       const flyingName   = document.getElementById('flying-name');
+      const hubEvent     = document.getElementById('hub-event');
+      const appEvent     = document.getElementById('app-event');
+      const flyingEvent  = document.getElementById('flying-event');
       const splash       = document.getElementById('splash');
       const app          = document.getElementById('app');
 
-      // Measure start positions
       const logoFrom = splashLogo.getBoundingClientRect();
-      const nameFrom = splashInput.getBoundingClientRect();
+      const nameFrom = nameSourceEl.getBoundingClientRect();
 
-      // Render app invisibly to measure target positions
       app.classList.remove('hidden');
       app.classList.add('invisible');
 
       requestAnimationFrame(() => {
-        const logoTo = topbarLogo.getBoundingClientRect();
-        const nameTo = topbarMember.getBoundingClientRect();
+        const logoTo  = topbarLogo.getBoundingClientRect();
+        const nameTo  = topbarMember.getBoundingClientRect();
+        const eventFrom = hubVisible ? hubEvent.getBoundingClientRect() : null;
+        const eventTo   = appEvent.getBoundingClientRect();
 
-        // Hide real elements
         splashLogo.classList.add('invisible');
         topbarLogo.classList.add('invisible');
-        splashInput.style.visibility = 'hidden';
+        nameSourceEl.style.visibility = 'hidden';
         topbarMember.classList.add('invisible');
+        if (hubVisible && hubEvent) { hubEvent.style.visibility = 'hidden'; appEvent.style.visibility = 'hidden'; }
 
-        // Set flying name content
         flyingName.textContent = teamMember;
 
-        // Fly logo
         flyElement(flyingLogo,
           { top: logoFrom.top, left: logoFrom.left },
           { top: logoTo.top,   left: logoTo.left },
-          {
-            from: { width: logoFrom.width + 'px', filter: 'invert(1)' },
+          { from: { width: logoFrom.width + 'px', filter: 'invert(1)' },
             to:   { width: logoTo.height + 'px',  filter: 'invert(1)' },
-            transitions: ['width 0.55s cubic-bezier(0.4,0,0.2,1)']
-          }
+            transitions: ['width 0.55s cubic-bezier(0.4,0,0.2,1)'] }
         );
 
-        // Fly name: splash input style → topbar member style
         flyElement(flyingName,
           { top: nameFrom.top, left: nameFrom.left },
           { top: nameTo.top,   left: nameTo.left },
-          {
-            from: { fontSize: '18px', color: '#ffffff', letterSpacing: '0' },
+          { from: { fontSize: hubVisible ? '13px' : '18px', color: '#ffffff', letterSpacing: hubVisible ? '0.06em' : '0' },
             to:   { fontSize: '13px', color: 'rgba(255,255,255,0.85)', letterSpacing: '0.06em' },
-            transitions: ['font-size 0.55s cubic-bezier(0.4,0,0.2,1)', 'color 0.55s ease', 'letter-spacing 0.55s ease']
-          }
+            transitions: ['font-size 0.55s cubic-bezier(0.4,0,0.2,1)', 'color 0.55s ease', 'letter-spacing 0.55s ease'] }
         );
 
-        // Fade splash out
+        if (hubVisible && eventFrom) {
+          flyElement(flyingEvent,
+            { top: eventFrom.top, left: eventFrom.left },
+            { top: eventTo.top,   left: eventTo.left },
+            { from: { opacity: '1' }, to: { opacity: '1' }, transitions: [] }
+          );
+        }
+
         splash.style.transition = 'opacity 0.4s ease';
         splash.style.opacity = '0';
-
-        // Reveal app behind
         app.classList.remove('invisible');
 
-        // Clean up
         setTimeout(() => {
           flyingLogo.style.display = 'none';
           flyingName.style.display = 'none';
+          flyingEvent.style.display = 'none';
           topbarLogo.classList.remove('invisible');
           topbarMember.classList.remove('invisible');
-          splashInput.style.visibility = '';
+          nameSourceEl.style.visibility = '';
+          if (hubEvent) hubEvent.style.visibility = '';
+          appEvent.style.visibility = '';
           splash.style.opacity = '';
           splash.style.transition = '';
           splash.classList.add('hidden');
@@ -375,86 +527,86 @@
 
     function resetMember() {
       localStorage.removeItem('caliber_member');
-      document.getElementById('s-member').value = teamMember;
-      document.getElementById('splash-btn').textContent = 'Update name';
+      updateNameDisplay(teamMember);
+      showSplashHub();
       animateToSplash();
     }
 
     function animateToSplash() {
-      const splashLogo   = document.getElementById('splash-logo');
+      const splashLogo   = document.getElementById('splash-logo-hub');
       const topbarLogo   = document.getElementById('topbar-logo');
       const flyingLogo   = document.getElementById('flying-logo');
-      const splashInput  = document.getElementById('s-member');
+      const splashNameEl = document.getElementById('name-display-text');
       const topbarMember = document.getElementById('topbar-member');
       const flyingName   = document.getElementById('flying-name');
+      const hubEvent     = document.getElementById('hub-event');
+      const appEvent     = document.getElementById('app-event');
+      const flyingEvent  = document.getElementById('flying-event');
       const splash       = document.getElementById('splash');
       const app          = document.getElementById('app');
 
-      // Measure start positions (topbar)
       const logoFrom = topbarLogo.getBoundingClientRect();
       const nameFrom = topbarMember.getBoundingClientRect();
+      const eventFrom = appEvent.getBoundingClientRect();
 
-      // Show splash invisibly to measure target positions
       splash.classList.remove('hidden');
       splash.style.opacity = '0';
       splashLogo.classList.remove('invisible');
 
       requestAnimationFrame(() => {
-        const logoTo = splashLogo.getBoundingClientRect();
-        const nameTo = splashInput.getBoundingClientRect();
+        const logoTo  = splashLogo.getBoundingClientRect();
+        const nameTo  = splashNameEl.getBoundingClientRect();
+        const eventTo = hubEvent.getBoundingClientRect();
 
-        // Hide real elements
         topbarLogo.classList.add('invisible');
         topbarMember.classList.add('invisible');
         splashLogo.classList.add('invisible');
-        splashInput.style.visibility = 'hidden';
+        splashNameEl.style.visibility = 'hidden';
+        appEvent.style.visibility = 'hidden';
+        hubEvent.style.visibility = 'hidden';
 
-        // Set flying name content
         flyingName.textContent = teamMember;
 
-        // Fly logo (topbar → splash centre)
         flyElement(flyingLogo,
           { top: logoFrom.top, left: logoFrom.left },
           { top: logoTo.top,   left: logoTo.left },
-          {
-            from: { width: logoFrom.height + 'px', filter: 'invert(1)' },
+          { from: { width: logoFrom.height + 'px', filter: 'invert(1)' },
             to:   { width: logoTo.width + 'px',    filter: 'invert(1)' },
-            transitions: ['width 0.55s cubic-bezier(0.4,0,0.2,1)']
-          }
+            transitions: ['width 0.55s cubic-bezier(0.4,0,0.2,1)'] }
         );
 
-        // Fly name: topbar style → splash input style
         flyElement(flyingName,
           { top: nameFrom.top, left: nameFrom.left },
           { top: nameTo.top,   left: nameTo.left },
-          {
-            from: { fontSize: '13px', color: 'rgba(255,255,255,0.85)', letterSpacing: '0.06em' },
-            to:   { fontSize: '18px', color: '#ffffff',                letterSpacing: '0' },
-            transitions: ['font-size 0.55s cubic-bezier(0.4,0,0.2,1)', 'color 0.55s ease', 'letter-spacing 0.55s ease']
-          }
+          { from: { fontSize: '13px', color: 'rgba(255,255,255,0.85)', letterSpacing: '0.06em' },
+            to:   { fontSize: '13px', color: 'rgba(255,255,255,0.85)', letterSpacing: '0.06em' },
+            transitions: [] }
         );
 
-        // Fade splash in
+        flyElement(flyingEvent,
+          { top: eventFrom.top, left: eventFrom.left },
+          { top: eventTo.top,   left: eventTo.left },
+          { from: { opacity: '1' }, to: { opacity: '1' }, transitions: [] }
+        );
+
         requestAnimationFrame(() => requestAnimationFrame(() => {
           splash.style.transition = 'opacity 0.4s ease';
           splash.style.opacity = '1';
         }));
 
-        // Clean up
         setTimeout(() => {
           flyingLogo.style.display = 'none';
           flyingName.style.display = 'none';
+          flyingEvent.style.display = 'none';
           topbarLogo.classList.remove('invisible');
           topbarMember.classList.remove('invisible');
           splashLogo.classList.remove('invisible');
-          splashInput.style.visibility = '';
+          splashNameEl.style.visibility = '';
+          appEvent.style.visibility = '';
+          hubEvent.style.visibility = '';
           splash.style.transition = '';
           splash.style.opacity = '';
           app.classList.add('hidden');
-          setTimeout(() => {
-            splashInput.focus();
-            splashInput.select();
-          }, 50);
         }, 650);
       });
     }
@@ -464,8 +616,13 @@
       if (saved) {
         teamMember = saved;
         document.getElementById('topbar-member').textContent = saved;
+        updateNameDisplay(saved);
+        showSplashHub();
         document.getElementById('splash').classList.add('hidden');
         document.getElementById('app').classList.remove('hidden');
+      } else {
+        // First visit: show onboarding
+        showSplashOnboard();
       }
       document.getElementById('s-member').addEventListener('keydown', e => {
         if (e.key === 'Enter') startApp();
