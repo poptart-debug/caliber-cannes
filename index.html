@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Caliber" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#1A6FA8" />
   <title>Caliber — Cannes 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +16,26 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow-x: hidden; }
-    body { background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20fill%3D%22%23F0D890%22%2F%3E%3Ccircle%20cx%3D%224%22%20cy%3D%223%22%20r%3D%221%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%227%22%20r%3D%221.2%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%2228%22%20cy%3D%222%22%20r%3D%220.8%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%228%22%20r%3D%221%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2214%22%20r%3D%221.2%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2222%22%20cy%3D%2211%22%20r%3D%220.9%22%20fill%3D%22%23B89840%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2216%22%20r%3D%221.1%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%222%22%20cy%3D%2222%22%20r%3D%221%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2220%22%20r%3D%221.3%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2224%22%20r%3D%220.9%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2230%22%20r%3D%221%22%20fill%3D%22%23B89840%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2228%22%20r%3D%221.2%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%221%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%226%22%20cy%3D%2238%22%20r%3D%221.1%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2236%22%20r%3D%220.8%22%20fill%3D%22%23B89840%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2238%22%20r%3D%221%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%225%22%20r%3D%220.7%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.4%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2214%22%20r%3D%221%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%225%22%20cy%3D%2226%22%20r%3D%220.8%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2240%22%20r%3D%221%22%20fill%3D%22%23B89840%22%20opacity%3D%220.4%22%2F%3E%3C%2Fsvg%3E') repeat, #F0D890; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    html { overflow: hidden; position: fixed; width: 100%; }
+    body {
+      /* Fix 2: safe area insets for notch/Dynamic Island/home bar */
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      /* Fix 3: prevent overscroll bounce */
+      overscroll-behavior: none;
+      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20fill%3D%22%23F0D890%22%2F%3E%3Ccircle%20cx%3D%224%22%20cy%3D%223%22%20r%3D%221%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%227%22%20r%3D%221.2%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%2228%22%20cy%3D%222%22%20r%3D%220.8%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%228%22%20r%3D%221%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2214%22%20r%3D%221.2%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2222%22%20cy%3D%2211%22%20r%3D%220.9%22%20fill%3D%22%23B89840%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2216%22%20r%3D%221.1%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%222%22%20cy%3D%2222%22%20r%3D%221%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2220%22%20r%3D%221.3%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2224%22%20r%3D%220.9%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2230%22%20r%3D%221%22%20fill%3D%22%23B89840%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2228%22%20r%3D%221.2%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%221%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%226%22%20cy%3D%2238%22%20r%3D%221.1%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2236%22%20r%3D%220.8%22%20fill%3D%22%23B89840%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2238%22%20r%3D%221%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%225%22%20r%3D%220.7%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.4%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2214%22%20r%3D%221%22%20fill%3D%22%23D4B870%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%225%22%20cy%3D%2226%22%20r%3D%220.8%22%20fill%3D%22%23C8A850%22%20opacity%3D%220.45%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2240%22%20r%3D%221%22%20fill%3D%22%23B89840%22%20opacity%3D%220.4%22%2F%3E%3C%2Fsvg%3E') repeat, #F0D890;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Fix 3: prevent body rubber-banding */
+    #app, #splash { overflow-y: auto; height: 100%; }
 
     /* ── Splash ── */
     #splash {
@@ -165,7 +188,7 @@
     .field-row .field:first-child { border-right: 1.5px solid #1A6FA8; }
 
     .field label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #8B6914; margin-bottom: 4px; }
-    .field input { display: block; width: 100%; border: none; outline: none; background: transparent; font-family: 'Inter', sans-serif; font-size: 15px; color: #1A6FA8; padding: 0; height: 28px; -webkit-appearance: none; }
+    .field input { display: block; width: 100%; border: none; outline: none; background: transparent; font-family: 'Inter', sans-serif; font-size: 16px; color: #1A6FA8; padding: 0; height: 28px; -webkit-appearance: none; }
     .field input::placeholder { color: #C8A860; }
     .field input:focus { border-bottom: 1.5px solid #8B6914; margin-bottom: -1.5px; }
 
@@ -268,7 +291,7 @@
           <span class="splash-name-display" id="name-display-text"></span>
           <button class="splash-name-edit-btn" id="name-edit-btn" onclick="enableNameEdit()">Edit</button>
         </div>
-        <input type="text" id="s-member-hub" placeholder="Your name" autocomplete="name" style="display:none;flex:1;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.5);outline:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:0;-webkit-appearance:none;" />
+        <input type="text" id="s-member-hub" placeholder="Your name" autocomplete="name" style="display:none;flex:1;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.5);outline:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:0;-webkit-appearance:none;" />
         <div style="display:flex;align-items:center;gap:10px;">
           <span id="hub-event" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);">Cannes&nbsp;'26</span>
         </div>
