@@ -341,11 +341,14 @@
         <div class="field"><label>Company</label><input type="text" id="f-company" placeholder="Org" autocomplete="organization" /></div>
       </div>
       <div class="field-row">
+        <div class="field"><label>Role</label><input type="text" id="f-role" placeholder="Job title" /></div>
         <div class="field"><label>Location</label><input type="text" id="f-location" placeholder="City" /></div>
-        <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="name@co.com" autocomplete="email" /></div>
       </div>
       <div class="field-row">
+        <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="name@co.com" autocomplete="email" /></div>
         <div class="field"><label>LinkedIn</label><input type="url" id="f-linkedin" placeholder="linkedin.com/in/…" /></div>
+      </div>
+      <div class="field-row">
         <div class="field"><label>Phone</label><input type="tel" id="f-phone" placeholder="+1 234…" autocomplete="tel" /></div>
       </div>
       <div class="field">
@@ -661,6 +664,7 @@
       const fields = {
         name:     document.getElementById('f-name').value.trim(),
         company:  document.getElementById('f-company').value.trim(),
+        role:     document.getElementById('f-role').value.trim(),
         location: document.getElementById('f-location').value.trim(),
         owner:    teamMember,
         linkedin: document.getElementById('f-linkedin').value.trim(),
@@ -754,7 +758,7 @@
     function clearStatus() { document.getElementById('status-msg').className = 'status'; }
 
     function clearForm() {
-      ['f-name','f-company','f-location','f-linkedin','f-email','f-phone','f-notes'].forEach(id => {
+      ['f-name','f-company','f-role','f-location','f-linkedin','f-email','f-phone','f-notes'].forEach(id => {
         document.getElementById(id).value = '';
       });
     }
